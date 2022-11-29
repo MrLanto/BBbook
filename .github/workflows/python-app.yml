@@ -9,7 +9,7 @@ on:
 #  pull_request:
 #    branches: [ "main" ]
   schedule:
-    - cron: '07 16 * * *'
+    - cron: '14 08 * * *'
     
 permissions:
   contents: read
