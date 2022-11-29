@@ -3,8 +3,9 @@
 name: Run_Workflow
 
 on:
-  schedule:
-    - cron: "05 10 * * *"
+  #schedule:
+  #  - cron: "05 10 * * *"
+  workflow_dispatch:
     
 permissions:
   contents: read
