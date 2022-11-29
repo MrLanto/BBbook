@@ -1,0 +1,32 @@
+
+
+name: Run_Workflow
+
+on:
+  #schedule:
+  #  - cron: "05 10 * * *"
+  workflow_dispatch:
+    
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    environment:
+      name: obj_infor
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.9"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: run my obj
+      run:
+        python handle_main.py ${{secrets.YOUR_SECRET_NAME}} ${{secrets.YOUR_SECRET_K}} ${{secrets.YOUR_SECRET_PLACE}} ${{secrets.YOUR_SECRET_TIME}} ${{secrets.YOUR_SECRET_SERVERJ}}
+
