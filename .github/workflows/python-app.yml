@@ -31,5 +31,5 @@ jobs:
     - name: run my obj
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        python handle_main.py ${{secret.YOUR_SECRET_NAME}} ${{secret.YOUR_SECRET_K}} ${{secret.YOUR_SECRET_PLACE}} ${{secret.YOUR_SECRET_TIME}} ${{secret.YOUR_SECRET_SERVERJ}}
+        python handle_main.py ${{secrets.YOUR_SECRET_NAME}} ${{secrets.YOUR_SECRET_K}} ${{secrets.YOUR_SECRET_PLACE}} ${{secrets.YOUR_SECRET_TIME}} ${{secrets.YOUR_SECRET_SERVERJ}}
 
