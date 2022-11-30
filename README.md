@@ -1,12 +1,14 @@
 # 北师大羽毛球馆预约程序
 
 ## Introduction
-使用python语言编写，Cython编译，*.so 文件是在linux上执行的类文件（类似于windows上的dll文件）。 经过测试可用。
+使用python语言编写，Cython编译，so 文件是在linux上执行的类文件（类似于windows上的dll文件）。 经过测试可用。
+本程序仅可在LINUX上可用，自己没有云服务器的话，建议还是用github自带的ACTION WORKFLOW(见方法二)。
 
 ## 使用说明
 ## 入口函数handle_main.py使用说明
 ```
-# 通过cmd窗口调用python
+# 通过LINUX命令行调用python
+
 d = sys.argv[1] # d是学号
 k = sys.argv[2] # 密码
 p = eval(sys.argv[3]) # 场地代号，这里填入两个数字的数组 如  [5988,5977]
@@ -19,10 +21,13 @@ my_ymq.main_apply_task()
 ### 方法一：
 直接下载本仓库文件至本地的linux系统，安装requestments依赖后，执行handle_main.py文件即可。 
 note: python须小于等于3.10
-首先，打开cmd, cd到文件夹下，然后输入
+1. 首先，cd到文件夹下，然后输入进行测试 （可以删除py文件的时间提醒，那玩意是为workflow准备的）
 ```
 python handle_main.py 学号 密码 场地代号 预约时间 server酱的key
 ```
+2. 建立cron调度命令，cron cd 你的地址;python handle_main.py 学号 密码 场地代号 预约时间 server酱的key >> BBbadmin.log 2>&1
+
+(__温馨提示：设定的最好在目标时间前1-2分钟执行__)
 
 ### 方法二：
 使用github上自带的github action workflow
@@ -69,7 +74,7 @@ https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-eve
 * 点击Action 
 * 右边有个run workflow 等待看结果
 2. 测试华为云函数
-部署测试完 是否有报错，更改时间，测试是否运作
+部署测试完 是否有报错，更改时间，测试是否运作,—__设定Cron时间应比目标预约时间提前5-10min(github服务器容易拥堵)__
 
 ## 场地ID
 | 时间          | 3号场地 | place 4 | place 5 | 小馆2号  | 小馆3号  | 允许预约时间   |
