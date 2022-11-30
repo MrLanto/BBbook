@@ -12,7 +12,7 @@
 d = sys.argv[1] # d是学号
 k = sys.argv[2] # 密码
 p = eval(sys.argv[3]) # 场地代号，这里填入两个数字的数组 如  [5988,5977]
-t = sys.argv[4] # 预约时间，格林尼治时间。比如学校7:30:00开始预约，那我们这里需要填为23:30:00
+t = sys.argv[4] # 预约时间。如果使用GIthub Workflow就是格林尼治时间，否则你就输入当地时间即可（建议注释掉时间的提示 两个print()）。比如学校7:30:00开始预约，那我们这里需要填为23:30:00
 s = sys.argv[5] # server酱的key,请自行百度，为了提醒是否预约成功或失败，推送至你的微信。
 my_ymq = DDDDOCR_School_BNU_YMQ(d,k,p,t,s)
 my_ymq.main_apply_task()
