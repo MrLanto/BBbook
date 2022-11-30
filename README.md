@@ -6,7 +6,7 @@
 
 ## 使用说明
 ## 入口函数handle_main.py使用说明
-```
+```python
 # 通过LINUX命令行调用python
 
 d = sys.argv[1] # d是学号
