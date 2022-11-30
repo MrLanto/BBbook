@@ -1,12 +1,14 @@
 # 北师大羽毛球馆预约程序
 
 ## Introduction
-使用python语言编写，Cython编译，*.so 文件是在linux上执行的类文件（类似于windows上的dll文件）。 经过测试可用。
+使用python语言编写，Cython编译，so 文件是在linux上执行的类文件（类似于windows上的dll文件）。 经过测试可用。
+本程序仅可在LINUX上可用，自己没有云服务器的话，建议还是用github自带的ACTION WORKFLOW(见方法二)。
 
 ## 使用说明
 ## 入口函数handle_main.py使用说明
 ```
-# 通过cmd窗口调用python
+# 通过LINUX命令行调用python
+
 d = sys.argv[1] # d是学号
 k = sys.argv[2] # 密码
 p = eval(sys.argv[3]) # 场地代号，这里填入两个数字的数组 如  [5988,5977]
@@ -19,10 +21,13 @@ my_ymq.main_apply_task()
 ### 方法一：
 直接下载本仓库文件至本地的linux系统，安装requestments依赖后，执行handle_main.py文件即可。 
 note: python须小于等于3.10
-首先，打开cmd, cd到文件夹下，然后输入
+1. 首先，cd到文件夹下，然后输入进行测试 （可以删除py文件的时间提醒，那玩意是为workflow准备的）
 ```
 python handle_main.py 学号 密码 场地代号 预约时间 server酱的key
 ```
+2. 建立cron调度命令，cron cd 你的地址;python handle_main.py 学号 密码 场地代号 预约时间 server酱的key >> BBbadmin.log 2>&1
+
+(__温馨提示：设定的最好在目标时间前1-2分钟执行__)
 
 ### 方法二：
 使用github上自带的github action workflow
@@ -38,10 +43,10 @@ YOUR_SECRET_SERVERJ
 YOUR_SECRET_TIME         （格林尼治时间，写成23:30:00,注意是英文符号）
 ```
 3. 建立触发器（github action自己的定时触发器非常难用，所以自己创建触发器即可）
-3.1 以免费的华为云函数为例 不详细讲了 我看百度上很容易搜到 先自学 https://blog.csdn.net/qq_28778001/article/details/124891438
-3.2 创建python 3.10 ,其他的默认就行啦
-3.3 粘贴触发代码 记得输入你的token(token怎么搞后面说)
-```
+* 以免费的华为云函数为例 不详细讲了 我看百度上很容易搜到 先自学 https://blog.csdn.net/qq_28778001/article/details/124891438
+* 创建python 3.10 ,其他的默认就行啦
+* 粘贴触发代码 记得输入你的token(token怎么搞后面说)
+```python
 # -*- coding:utf-8 -*-
 import requests
 import json
@@ -59,7 +64,7 @@ def run():
 def handler(event, context):
     return run()
 ```
-3.4 设置触发器 Timer 设置好时间 不会的自行百度 Cron 任务完成
+* 设置触发器 Timer 设置好时间 不会的自行百度 Cron 任务完成
 4. Token获取
 https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
 也可参考： https://blog.csdn.net/l1937gzjlzy/article/details/117753465
@@ -69,7 +74,7 @@ https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-eve
 * 点击Action 
 * 右边有个run workflow 等待看结果
 2. 测试华为云函数
-部署测试完 是否有报错，更改时间，测试是否运作
+部署测试完 是否有报错，更改时间，测试是否运作,—__设定Cron时间应比目标预约时间提前5-10min(github服务器容易拥堵)__
 
 ## 场地ID
 | 时间          | 3号场地 | place 4 | place 5 | 小馆2号  | 小馆3号  | 允许预约时间   |
