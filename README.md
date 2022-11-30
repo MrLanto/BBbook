@@ -43,9 +43,9 @@ YOUR_SECRET_SERVERJ
 YOUR_SECRET_TIME         （格林尼治时间，写成23:30:00,注意是英文符号）
 ```
 3. 建立触发器（github action自己的定时触发器非常难用，所以自己创建触发器即可）
-* 3.1 以免费的华为云函数为例 不详细讲了 我看百度上很容易搜到 先自学 https://blog.csdn.net/qq_28778001/article/details/124891438
-* 3.2 创建python 3.10 ,其他的默认就行啦
-* 3.3 粘贴触发代码 记得输入你的token(token怎么搞后面说)
+* 以免费的华为云函数为例 不详细讲了 我看百度上很容易搜到 先自学 https://blog.csdn.net/qq_28778001/article/details/124891438
+* 创建python 3.10 ,其他的默认就行啦
+* 粘贴触发代码 记得输入你的token(token怎么搞后面说)
 ```python
 # -*- coding:utf-8 -*-
 import requests
@@ -64,7 +64,7 @@ def run():
 def handler(event, context):
     return run()
 ```
-3.4 设置触发器 Timer 设置好时间 不会的自行百度 Cron 任务完成
+* 设置触发器 Timer 设置好时间 不会的自行百度 Cron 任务完成
 4. Token获取
 https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
 也可参考： https://blog.csdn.net/l1937gzjlzy/article/details/117753465
